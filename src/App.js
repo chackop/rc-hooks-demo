@@ -1,10 +1,15 @@
 import "./App.css";
-import React, { useState, useEffect, useReducer } from "react";
+import React, { useReducer } from "react";
 
 function App() {
-  const [num, setNum] = useReducer((num, newnum) => num + newnum, 0);
+  const [checked, toggle] = useReducer((checked) => !checked, false);
 
-  return <h1 onClick={() => setNum(1)}>{num}</h1>;
+  return (
+    <>
+      <input type="checkbox" value={checked} onChange={() => toggle()} />
+      {checked ? "checked" : "not checked"}
+    </>
+  );
 }
 
 export default App;
