@@ -14,7 +14,13 @@ function App({ login }) {
   }
   return (
     <div>
-      <pre>{JSON.stringify(data, null, 2)}</pre>
+      {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
+      <img src={data.avatar_url} alt={data.login} />
+      <div>
+        <h1>{data.login}</h1>
+        {data.name && <p>{data.name}</p>}
+        {data.location && <p>{data.location}</p>}
+      </div>
     </div>
   );
 }
