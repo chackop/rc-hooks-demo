@@ -1,17 +1,20 @@
 import "./App.css";
-import React, { useContext } from "react";
-import { useSpecies } from "./";
+import React from "react";
+import { usefetch } from "./hooks/useFetch";
 
-function App() {
-  const { species } = useSpecies();
+function App({ login }) {
+  const { loading, data, error } = usefetch(
+    `https://api.github.com/users/${login}`
+  );
+
+  if (loading) {
+    return <h1>loading</h1>;
+  } else if (error) {
+    return <pre>{JSON.stringify(error, null, 2)}</pre>;
+  }
   return (
     <div>
-      <h1>Species</h1>
-      <ul>
-        {species.map((item) => (
-          <li key={item.id}>{item.type}</li>
-        ))}
-      </ul>
+      <pre>{JSON.stringify(data, null, 2)}</pre>
     </div>
   );
 }
