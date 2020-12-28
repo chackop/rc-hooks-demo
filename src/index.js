@@ -1,10 +1,12 @@
-import React, { createContext } from "react";
+import React, { createContext, useContext } from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
-export const SpeciesContext = createContext();
+const SpeciesContext = createContext();
+
+export const useSpecies = () => useContext(SpeciesContext);
 
 const species = [
   { id: "1", type: "animal" },

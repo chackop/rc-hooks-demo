@@ -1,9 +1,9 @@
 import "./App.css";
 import React, { useContext } from "react";
-import { SpeciesContext } from "./";
+import { useSpecies } from "./";
 
 function App() {
-  const { species } = useContext(SpeciesContext);
+  const { species } = useSpecies();
   return (
     <div>
       <h1>Species</h1>
