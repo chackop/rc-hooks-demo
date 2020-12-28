@@ -2,25 +2,28 @@ import "./App.css";
 import React, { useState, useEffect } from "react";
 
 function App() {
-  const [name, setName] = useState("initialState");
-  const [Admin, setAdmin] = useState(false);
+  const [data, setData] = useState([]);
 
   useEffect(() => {
-    document.title = "Title" + name;
-  }, [name]);
+    fetch("https://api.github.com/users")
+      .then((resp) => resp.json())
+      .then(setData);
+  }, []);
 
-  useEffect(() => {
-    console.log(`Admin user ${Admin ? "IS admin" : "not admin"}`);
-  }, [Admin]);
-
-  return (
-    <section>
-      <p>Congos {name}</p>
-      <button onClick={() => setName("AnotherSTate")}>Change name</button>
-      <p>Admin {Admin ? "admin login" : "no admins"}</p>
-      <button onClick={() => setAdmin(true)}>set admin</button>
-    </section>
-  );
+  if (data) {
+    return (
+      <div>
+        <ul>
+          {data.map((user) => (
+            <li key={user.id}>{user.login}</li>
+          ))}
+        </ul>
+        <button onClick={() => setData([])}>remove data</button>
+      </div>
+    );
+  } else {
+    return <p>No users</p>;
+  }
 }
 
 export default App;
