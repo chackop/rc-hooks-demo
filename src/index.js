@@ -1,19 +1,22 @@
-import React from "react";
+import React, { createContext } from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
-// const [firstItem, secondPiece] = ["chax1", "chax2", "chax3"];
-// const [, , thirdPiece] = ["chax1", "chax2", "chax3"];
-// console.log("firstItem", firstItem);
-// console.log("secondPiece", secondPiece);
-// console.log("thirdPiece", thirdPiece);
+export const SpeciesContext = createContext();
+
+const species = [
+  { id: "1", type: "animal" },
+  { id: "2", type: "insects" },
+  { id: "3", type: "plants" },
+  { id: "4", type: "minerals" },
+];
 
 ReactDOM.render(
-  <React.StrictMode>
+  <SpeciesContext.Provider value={{ species }}>
     <App />
-  </React.StrictMode>,
+  </SpeciesContext.Provider>,
   document.getElementById("root")
 );
 

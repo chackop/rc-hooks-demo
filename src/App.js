@@ -1,25 +1,18 @@
 import "./App.css";
-import React, { useRef, useState } from "react";
-import useInput from "./hooks/useInput";
+import React, { useContext } from "react";
+import { SpeciesContext } from "./";
 
 function App() {
-  const [titleProps, resetTitle] = useInput("");
-  const [colorProps, resetcolor] = useInput("#000");
-
-  const submit = (evt) => {
-    evt.preventDefault();
-
-    alert("soundVal and ColorVal" + titleProps.value + colorProps.value);
-    resetTitle();
-    resetcolor();
-  };
-
+  const { species } = useContext(SpeciesContext);
   return (
-    <form onSubmit={submit}>
-      <input {...titleProps} type="text" placeholder="Sound color" />
-      <input {...colorProps} type="color" />
-      <button>ADD</button>
-    </form>
+    <div>
+      <h1>Species</h1>
+      <ul>
+        {species.map((item) => (
+          <li key={item.id}>{item.type}</li>
+        ))}
+      </ul>
+    </div>
   );
 }
 
